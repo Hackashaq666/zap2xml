@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   sports:
     image: ghcr.io/hackashaq666/zap2xml:latest
