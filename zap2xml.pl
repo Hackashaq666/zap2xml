@@ -1,7 +1,4 @@
 #!/usr/bin/env perl
-# zap2xml (c) <zap2xml@gmail.com> - for personal use only!
-# not for redistribution of any kind, or conversion to other languages,
-# not GPL. not for github, thank you.
 
 BEGIN { $SIG{__DIE__} = sub { 
   return if $^S;
@@ -156,7 +153,7 @@ $sleeptime = $options{S} if defined $options{S};
 $shiftMinutes = $options{m} if defined $options{m};
 $ncdays = $days - $ncdays; # make relative to the end
 $urlRoot = 'https://tvlistings.gracenote.com/';
-$urlAssets = 'https://gracenote.tmsimg.com/assets/';
+$urlAssets = 'https://zap2it.tmsimg.com/assets/';
 $tvgurlRoot = 'http://mobilelistings.tvguide.com/';
 $tvgMapiRoot = 'http://mapi.tvguide.com/';
 $tvgurl = 'https://www.tvguide.com/';
@@ -1346,7 +1343,7 @@ sub parseJSON {
           $programs{$cp}{imageUrl} = $turl;
         }
         if ($program->{'seriesId'} ne '' && $program->{'tmsId'} ne '') {
-           $programs{$cp}{url} = $urlRoot . "/overview.html?programSeriesId=" 
+           $programs{$cp}{url} = $urlRoot . "overview-affiliates.html?programSeriesId=" 
                 . $program->{seriesId} . "&tmsId=" . $program->{tmsId};
         }
 
