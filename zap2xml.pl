@@ -75,6 +75,8 @@ $sleeptime = 0;
 $allChan = 0;
 $shiftMinutes = 0;
 
+$userAgent = $ENV{USER_AGENT} || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36';
+
 $outputXTVD = 0;
 $lineuptype;
 $lineupname;
@@ -262,7 +264,7 @@ if (defined($options{z})) {
       my $zstart = substr($ms, 0, -3);
       $params = "?time=$zstart&timespan=$gridHours&pref=$zapPref&";
       $params .= &getZapGParams();
-      $params .= '&TMSID=&AffiliateID=gapzap&FromPage=TV%20Grid';
+      $params .= '&TMSID=&AffiliateID=lat&FromPage=TV%20Grid';
       $params .= '&ActivityID=1&OVDID=&isOverride=true';
       $rs = &getURL($urlRoot . "api/grid$params",1);
       last if ($rs eq '');
@@ -893,7 +895,7 @@ sub getZapParams {
   $phash{countryCode} = $country;
   $phash{headendId} = $lineupId;
   $phash{device} = $device;
-  $phash{aid} = 'gapzap';
+  $phash{aid} = 'lat';
   return %phash;
 }
 
@@ -909,7 +911,7 @@ sub login {
     $ua->conn_cache(LWP::ConnCache->new( total_capacity => undef ));
     $ua->cookie_jar(HTTP::Cookies->new);
     $ua->proxy(['http', 'https'], $proxy) if defined($proxy);
-    $ua->agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.3296.83');
+    $ua->agent($userAgent);
     $ua->default_headers->push_header('Accept-Encoding' => 'gzip, deflate');
   }
 
