@@ -8,4 +8,4 @@ services:
         - USERNAME=myemail@email.com
         - PASSWORD=**password**
         - OPT_ARGS=-I -D
-        - XMLTV_FILENAME=sports.xml
+        - XMLTV_FILENAME=guide.xml
